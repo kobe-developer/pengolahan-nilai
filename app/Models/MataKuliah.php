@@ -15,6 +15,15 @@ class MataKuliah extends Model
      * @var string
      */
     protected $table = 'mata_kuliah';
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
 
-    protected $fillable = ['nama_mk', 'sks'];
+    protected $fillable = ['nama_mk', 'sks', 'stmt'];
 }

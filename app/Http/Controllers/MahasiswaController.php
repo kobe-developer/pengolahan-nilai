@@ -9,7 +9,7 @@ class MahasiswaController extends Controller
 {
     public function index()
     {
-        $data = Mahasiswa::all();
+        $data = Mahasiswa::with(['kelas', 'prodi'])->get();
         return response([
             'status' => true,
             'message' => 'Data mahasiswa',
@@ -18,8 +18,15 @@ class MahasiswaController extends Controller
     }
     public function store(Request $request)
     {
-        $data = Mahasiswa::create($request->all());
-        return response(['status' => true, 'message' => 'Create mahasiswa', 'data' => $data]);
+        $data = $request->validate([
+            'nim' => 'required|max:10',
+            'nama' => 'required',
+            'id_kelas' => 'required|exists:kelas,id',
+            'id_prodi' => 'required|exists:prodi,id',
+            'tahun_masuk' => 'required|date_format:Y'
+        ]);
+        $created = Mahasiswa::create($data);
+        return response(['status' => true, 'message' => 'Create mahasiswa', 'data' => $created]);
     }
     public function show($id)
     {
@@ -32,8 +39,15 @@ class MahasiswaController extends Controller
     }
     public function update(Request $request, $id)
     {
+        $data = $request->validate([
+            'nim' => 'required|max:10',
+            'nama' => 'required',
+            'id_kelas' => 'required|exists:kelas,id',
+            'id_prodi' => 'required|exists:prodi,id',
+            'tahun_masuk' => 'required|date_format:Y'
+        ]);
         $mahasiswa = Mahasiswa::find($id);
-        $mahasiswa->update($request->all());
+        $mahasiswa->update($data);
         return response(['status' => true, 'message' => 'Update berhasil', 'data' => $mahasiswa]);
     }
     public function destroy($id)
