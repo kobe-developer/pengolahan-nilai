@@ -25,9 +25,9 @@ Route::post('/user/validate', [UserController::class, 'auth'])->middleware(HasTo
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', [UserController::class, 'currentUser']);
     Route::get('/user/log-out', [UserController::class, 'logout']);
-    Route::resource('mahasiswa', MahasiswaController::class);
-    Route::resource('nilai', NilaiMahasiswaController::class);
-    Route::resource('prodi', ProdiController::class);
-    Route::resource('kelas', KelasController::class);
-    Route::resource('mata-kuliah', MataKuliahController::class);
+    Route::resource('mahasiswa', MahasiswaController::class)->middleware('checkRole:1,2');
+    Route::resource('nilai', NilaiMahasiswaController::class)->middleware('checkRole:2');
+    Route::resource('prodi', ProdiController::class)->middleware('checkRole:1');
+    Route::resource('kelas', KelasController::class)->middleware('checkRole:1,3');
+    Route::resource('mata-kuliah', MataKuliahController::class)->middleware('checkRole:1,3');
 });
