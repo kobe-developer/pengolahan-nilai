@@ -34,15 +34,15 @@ class Mahasiswa extends Model
      *
      * @var array
      */
-    protected $fillable = ['nim', 'nama', 'id_kelas', 'id_prodi', 'tahun_masuk'];
+    protected $fillable = ['nim', 'nama', 'id_kelas', 'id_prodi', 'tahun_masuk', 'email','alamat','nomor_hp','jenis_kelamin'];
 
 
-    public function kelas()
+    public function kelas(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Kelas::class, 'id_kelas');
     }
 
-    public function prodi()
+    public function prodi(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Prodi::class, 'id_prodi');
     }

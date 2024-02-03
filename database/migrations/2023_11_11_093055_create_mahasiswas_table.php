@@ -15,12 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string("nim", 10)->unique();
             $table->string("nama", 150);
+            $table->enum('jenis_kelamin', ['P','L']);
+            $table->string('alamat');
+            $table->string('email');
+            $table->string('nomor_hp',20);
             $table->bigInteger('id_kelas')->unsigned();
-            $table->foreign('id_kelas')->references('id')->on('kelas')->onDelete('cascade');
             $table->bigInteger('id_prodi')->unsigned();
-            $table->foreign('id_prodi')->references('id')->on('prodi')->onDelete('cascade');
             $table->integer('tahun_masuk');
             $table->timestamps();
+            $table->foreign('id_kelas')->references('id')->on('kelas')->onDelete('cascade');
+            $table->foreign('id_prodi')->references('id')->on('prodi')->onDelete('cascade');
         });
     }
 

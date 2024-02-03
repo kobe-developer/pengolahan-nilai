@@ -14,5 +14,6 @@ class UserRoleSeed extends Seeder
     {
         UserRole::create(['role_name' => 'Administrator']);
         UserRole::create(['role_name' => 'Dosen']);
+        UserRole::create(['role_name' => 'Mahasiswa']);
     }
 }

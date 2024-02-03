@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
 use App\Models\NilaiMahasiswa;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class NilaiMahasiswaController extends Controller
@@ -11,17 +12,19 @@ class NilaiMahasiswaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+
         return response([
             'status' => true,
             'message' => 'OK',
-            'data' => $this->getNilaiMahasiswa(),
+            'data' => $this->getNilaiMahasiswa($request->user()),
         ]);
     }
 
-    private function getNilaiMahasiswa(?string $id = null)
+    private function getNilaiMahasiswa(User $user, ?string $id = null,)
     {
+        $mhs_nim= $user->access_value;
         $data = NilaiMahasiswa::with(['mata_kuliah'])
             ->with('user', function ($user) {
                 return $user->with('role')->get();
@@ -29,7 +32,11 @@ class NilaiMahasiswaController extends Controller
             ->with('mahasiswa', function ($mahasiswa) {
                 return $mahasiswa->with(['prodi', 'kelas'])->get();
             });
+
+        if ($mhs_nim) return $data->where('mhs_nim', $mhs_nim)->get();
+
         if ($id) return $data->where('id', $id)->first();
+
         return $data->get();
     }
 
@@ -66,12 +73,12 @@ class NilaiMahasiswaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request, string $id)
     {
         return response([
             'status' => true,
             'message' => 'OK',
-            'data' => $this->getNilaiMahasiswa($id),
+            'data' => $this->getNilaiMahasiswa($request->user(),$id),
         ]);
     }
 

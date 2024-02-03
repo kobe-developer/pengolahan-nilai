@@ -9,7 +9,7 @@ class MahasiswaController extends Controller
 {
     public function index()
     {
-        $data = Mahasiswa::with(['kelas', 'prodi'])->get();
+        $data = Mahasiswa::with(['kelas', 'prodi'])->paginate(100);
         return response([
             'status' => true,
             'message' => 'Data mahasiswa',
@@ -21,6 +21,10 @@ class MahasiswaController extends Controller
         $data = $request->validate([
             'nim' => 'required|max:10',
             'nama' => 'required',
+            'alamat' => 'required',
+            'jenis_kelamin' => 'required',
+            'email' => 'required|email',
+            'nomor_hp'=>'required|max:20',
             'id_kelas' => 'required|exists:kelas,id',
             'id_prodi' => 'required|exists:prodi,id',
             'tahun_masuk' => 'required|date_format:Y'

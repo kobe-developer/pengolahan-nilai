@@ -12,11 +12,30 @@ class MataKuliahController extends Controller
      */
     public function index()
     {
-        $data = MataKuliah::all();
+
+        $data = MataKuliah::with('dosen')->get();
         return response([
             'status' => true,
             'message' => 'OK',
             'data' => $data,
+        ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+                'nama_mk' => 'required',
+                'sks' => 'required|numeric',
+                'stmt' => 'required|numeric']
+        );
+        $mk = MataKuliah::query()->create($data);
+        return response([
+            'status' => true,
+            'message' => 'OK',
+            'data' => $mk,
         ]);
     }
 
@@ -29,25 +48,11 @@ class MataKuliahController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        $data = $request->validate(['nama_mk' => 'required', 'sks' => 'required|numeric', 'stmt' => 'required|numeric']);
-        $mk = MataKuliah::create($data);
-        return response([
-            'status' => true,
-            'message' => 'OK',
-            'data' => $mk,
-        ]);
-    }
-
-    /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        $mk = MataKuliah::find($id);
+        $mk = MataKuliah::query()->find($id);
         return response([
             'status' => true,
             'message' => 'OK',
@@ -68,8 +73,12 @@ class MataKuliahController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $data = $request->validate(['nama_mk' => 'required', 'sks' => 'required|numeric', 'stmt' => 'required|numeric']);
-        $mk = MataKuliah::find($id)->update($data);
+        $data = $request->validate([
+            'nama_mk' => 'required',
+            'sks' => 'required|numeric',
+            'stmt' => 'required|numeric'
+        ]);
+        $mk = MataKuliah::query()->find($id)->update($data);
         return response([
             'status' => true,
             'message' => 'OK',
@@ -82,7 +91,7 @@ class MataKuliahController extends Controller
      */
     public function destroy(string $id)
     {
-        MataKuliah::find($id)->delete();
+        MataKuliah::query()->find($id)->delete();
         return response([
             'status' => true,
             'message' => 'OK',
