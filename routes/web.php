@@ -7,8 +7,6 @@ use App\Http\Controllers\MataKuliahController;
 use App\Http\Controllers\NilaiMahasiswaController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\UserAuthorizeController;
-use App\Http\Requests\UserAuthorizeRequest;
-use App\Services\UserAuthorizeService;
 use Illuminate\Support\Facades\Route;
 
 /*

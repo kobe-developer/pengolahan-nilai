@@ -300,18 +300,6 @@
         },
         {
             "name": "doctrine/dbal",
-<<<<<<< HEAD
-            "version": "3.8.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/doctrine/dbal.git",
-                "reference": "d244f2e6e6bf32bff5174e6729b57214923ecec9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/d244f2e6e6bf32bff5174e6729b57214923ecec9",
-                "reference": "d244f2e6e6bf32bff5174e6729b57214923ecec9",
-=======
             "version": "3.8.1",
             "source": {
                 "type": "git",
@@ -322,7 +310,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/doctrine/dbal/zipball/c9ea252cdce4da324ede3d6c5913dd89f769afd2",
                 "reference": "c9ea252cdce4da324ede3d6c5913dd89f769afd2",
->>>>>>> f058827 (user interface)
                 "shasum": ""
             },
             "require": {
@@ -338,15 +325,9 @@
                 "doctrine/coding-standard": "12.0.0",
                 "fig/log-test": "^1",
                 "jetbrains/phpstorm-stubs": "2023.1",
-<<<<<<< HEAD
-                "phpstan/phpstan": "1.10.56",
-                "phpstan/phpstan-strict-rules": "^1.5",
-                "phpunit/phpunit": "9.6.15",
-=======
                 "phpstan/phpstan": "1.10.57",
                 "phpstan/phpstan-strict-rules": "^1.5",
                 "phpunit/phpunit": "9.6.16",
->>>>>>> f058827 (user interface)
                 "psalm/plugin-phpunit": "0.18.4",
                 "slevomat/coding-standard": "8.13.1",
                 "squizlabs/php_codesniffer": "3.8.1",
@@ -412,11 +393,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/dbal/issues",
-<<<<<<< HEAD
-                "source": "https://github.com/doctrine/dbal/tree/3.8.0"
-=======
                 "source": "https://github.com/doctrine/dbal/tree/3.8.1"
->>>>>>> f058827 (user interface)
             },
             "funding": [
                 {
@@ -432,11 +409,7 @@
                     "type": "tidelift"
                 }
             ],
-<<<<<<< HEAD
-            "time": "2024-01-25T21:44:02+00:00"
-=======
             "time": "2024-02-03T17:33:49+00:00"
->>>>>>> f058827 (user interface)
         },
         {
             "name": "doctrine/deprecations",
@@ -2060,18 +2033,6 @@
         },
         {
             "name": "league/flysystem",
-<<<<<<< HEAD
-            "version": "3.23.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "199e1aebbe3e62bd39f4d4fc8c61ce0b3786197e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/199e1aebbe3e62bd39f4d4fc8c61ce0b3786197e",
-                "reference": "199e1aebbe3e62bd39f4d4fc8c61ce0b3786197e",
-=======
             "version": "3.24.0",
             "source": {
                 "type": "git",
@@ -2082,7 +2043,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/b25a361508c407563b34fac6f64a8a17a8819675",
                 "reference": "b25a361508c407563b34fac6f64a8a17a8819675",
->>>>>>> f058827 (user interface)
                 "shasum": ""
             },
             "require": {
@@ -2147,11 +2107,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
-<<<<<<< HEAD
-                "source": "https://github.com/thephpleague/flysystem/tree/3.23.1"
-=======
                 "source": "https://github.com/thephpleague/flysystem/tree/3.24.0"
->>>>>>> f058827 (user interface)
             },
             "funding": [
                 {
@@ -2163,11 +2119,7 @@
                     "type": "github"
                 }
             ],
-<<<<<<< HEAD
-            "time": "2024-01-26T18:42:03+00:00"
-=======
             "time": "2024-02-04T12:10:17+00:00"
->>>>>>> f058827 (user interface)
         },
         {
             "name": "league/flysystem-local",
@@ -7114,18 +7066,6 @@
         },
         {
             "name": "phpunit/phpunit",
-<<<<<<< HEAD
-            "version": "10.5.9",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "0bd663704f0165c9e76fe4f06ffa6a1ca727fdbe"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/0bd663704f0165c9e76fe4f06ffa6a1ca727fdbe",
-                "reference": "0bd663704f0165c9e76fe4f06ffa6a1ca727fdbe",
-=======
             "version": "10.5.10",
             "source": {
                 "type": "git",
@@ -7136,7 +7076,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/50b8e314b6d0dd06521dc31d1abffa73f25f850c",
                 "reference": "50b8e314b6d0dd06521dc31d1abffa73f25f850c",
->>>>>>> f058827 (user interface)
                 "shasum": ""
             },
             "require": {
@@ -7208,11 +7147,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-<<<<<<< HEAD
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.9"
-=======
                 "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.10"
->>>>>>> f058827 (user interface)
             },
             "funding": [
                 {
@@ -7228,11 +7163,7 @@
                     "type": "tidelift"
                 }
             ],
-<<<<<<< HEAD
-            "time": "2024-01-22T14:35:40+00:00"
-=======
             "time": "2024-02-04T09:07:51+00:00"
->>>>>>> f058827 (user interface)
         },
         {
             "name": "sebastian/cli-parser",
@@ -8365,18 +8296,6 @@
         },
         {
             "name": "spatie/laravel-ignition",
-<<<<<<< HEAD
-            "version": "2.4.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/laravel-ignition.git",
-                "reference": "005e1e7b1232f3b22d7e7be3f602693efc7dba67"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/005e1e7b1232f3b22d7e7be3f602693efc7dba67",
-                "reference": "005e1e7b1232f3b22d7e7be3f602693efc7dba67",
-=======
             "version": "2.4.2",
             "source": {
                 "type": "git",
@@ -8387,7 +8306,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/351504f4570e32908839fc5a2dc53bf77d02f85e",
                 "reference": "351504f4570e32908839fc5a2dc53bf77d02f85e",
->>>>>>> f058827 (user interface)
                 "shasum": ""
             },
             "require": {
@@ -8466,11 +8384,7 @@
                     "type": "github"
                 }
             ],
-<<<<<<< HEAD
-            "time": "2024-01-12T13:14:58+00:00"
-=======
             "time": "2024-02-09T16:08:40+00:00"
->>>>>>> f058827 (user interface)
         },
         {
             "name": "symfony/yaml",
