@@ -25,5 +25,10 @@ class MataKuliah extends Model
         'updated_at',
     ];
 
-    protected $fillable = ['nama_mk', 'sks', 'stmt'];
+    protected $fillable = ['nama_mk', 'sks', 'stmt', 'dosen_nip'];
+
+    public function dosen()
+    {
+        return $this->hasOne(Dosen::class,'nip', 'dosen_nip');
+    }
 }

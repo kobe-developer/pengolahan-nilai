@@ -64,3 +64,25 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## How to Use
+
+- Install dependency laravel
+- Jika belum menginstall composer kamu bisa download dengan link dibawah ini
+- **[Download Composer](https://getcomposer.org/download)**
+- Kemudian jalankan perintah berikut
+
+<code>composer install</code>
+
+- Buat database di phpmyadmin dengan nama <code>pengolahan_nilai</code>
+- Kemudian jalankan database migration
+
+<code>php artisan migrate</code>
+
+- Jalankan database seeder
+
+<code>php artisan db:seed</code>
+
+- Jalankan server laravel
+
+<code>php artisan serve</code>
