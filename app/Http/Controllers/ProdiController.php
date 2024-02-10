@@ -10,14 +10,17 @@ class ProdiController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $data = Prodi::all();
-        return response([
-            'status' => true,
-            'message' => 'OK',
-            'data' => $data,
-        ]);
+        if ($request->wantsJson()) {
+            return response([
+                'status' => true,
+                'message' => 'OK',
+                'data' => $data,
+            ]);
+        }
+        return view('user-interface.prodi.index', compact('data'));
     }
 
     /**

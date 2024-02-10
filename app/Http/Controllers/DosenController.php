@@ -7,15 +7,17 @@ use Illuminate\Http\Request;
 
 class DosenController extends Controller
 {
-
-    public function index()
+    public function index(Request $request)
     {
-        $data = Dosen::query()->paginate();
-        return response([
-            'status' => true,
-            'message' => 'Ok.',
-            'data' => $data
-        ]);
+        $data = Dosen::with('prodi')->get();
+        if ($request->wantsJson()) {
+            return response([
+                'status' => true,
+                'message' => 'Ok.',
+                'data' => $data
+            ]);
+        }
+        return view('user-interface.dosen.index', compact('data'));
     }
 
     public function store(Request $request)

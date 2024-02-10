@@ -22,9 +22,9 @@ class NilaiMahasiswaController extends Controller
         ]);
     }
 
-    private function getNilaiMahasiswa(User $user, ?string $id = null,)
+    private function getNilaiMahasiswa(?User $user, ?string $id = null)
     {
-        $mhs_nim= $user->access_value;
+        $mhs_nim = $user->access_value ?? null;
         $data = NilaiMahasiswa::with(['mata_kuliah'])
             ->with('user', function ($user) {
                 return $user->with('role')->get();
@@ -33,9 +33,13 @@ class NilaiMahasiswaController extends Controller
                 return $mahasiswa->with(['prodi', 'kelas'])->get();
             });
 
-        if ($mhs_nim) return $data->where('mhs_nim', $mhs_nim)->get();
+        if ($mhs_nim) {
+            return $data->where('mhs_nim', $mhs_nim)->get();
+        }
 
-        if ($id) return $data->where('id', $id)->first();
+        if ($id) {
+            return $data->where('id', $id)->first();
+        }
 
         return $data->get();
     }
@@ -78,7 +82,7 @@ class NilaiMahasiswaController extends Controller
         return response([
             'status' => true,
             'message' => 'OK',
-            'data' => $this->getNilaiMahasiswa($request->user(),$id),
+            'data' => $this->getNilaiMahasiswa($request->user(), $id),
         ]);
     }
 
