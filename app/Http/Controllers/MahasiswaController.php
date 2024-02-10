@@ -7,14 +7,17 @@ use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data = Mahasiswa::with(['kelas', 'prodi'])->paginate(100);
-        return response([
-            'status' => true,
-            'message' => 'Data mahasiswa',
-            'data' => $data,
-        ]);
+        $data = Mahasiswa::with(['kelas', 'prodi'])->get();
+        if ($request->wantsJson()) {
+            return response([
+                'status' => true,
+                'message' => 'Data mahasiswa',
+                'data' => $data,
+            ]);
+        }
+        return view('user-interface.mhs.index', compact('data'));
     }
     public function store(Request $request)
     {
@@ -24,7 +27,7 @@ class MahasiswaController extends Controller
             'alamat' => 'required',
             'jenis_kelamin' => 'required',
             'email' => 'required|email',
-            'nomor_hp'=>'required|max:20',
+            'nomor_hp' => 'required|max:20',
             'id_kelas' => 'required|exists:kelas,id',
             'id_prodi' => 'required|exists:prodi,id',
             'tahun_masuk' => 'required|date_format:Y'

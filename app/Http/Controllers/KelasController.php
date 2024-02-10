@@ -10,14 +10,18 @@ class KelasController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $kelas = Kelas::all();
-        return response([
-            'status' => true,
-            'message' => 'Get kelas',
-            'data' => $kelas,
-        ]);
+        if ($request->wantsJson()) {
+            return response([
+                'status' => true,
+                'message' => 'Get kelas',
+                'data' => $kelas,
+            ]);
+        }
+
+        return view('user-interface.kelas.index', compact('kelas'));
     }
 
     /**

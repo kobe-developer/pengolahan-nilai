@@ -1,5 +1,14 @@
 <?php
 
+use App\Http\Controllers\DosenController;
+use App\Http\Controllers\KelasController;
+use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\MataKuliahController;
+use App\Http\Controllers\NilaiMahasiswaController;
+use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\UserAuthorizeController;
+use App\Http\Requests\UserAuthorizeRequest;
+use App\Services\UserAuthorizeService;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +22,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware('guest')->group(function () {
+    Route::get('/login', fn () => view('login.index'))->name('login');
+    Route::post('/authorize', [UserAuthorizeController::class, 'login'])->name('login.post');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/', function () {
+        return view('user-interface.pages.dashboard');
+    })->name('dashboard');
+    Route::delete('/logout', [UserAuthorizeController::class, 'logout']);
+    Route::resource('dosen', DosenController::class);
+    Route::resource('mahasiswa', MahasiswaController::class);
+    Route::resource('mata-kuliah', MataKuliahController::class);
+    Route::resource('prodi', ProdiController::class);
+    Route::resource('kelas', KelasController::class);
+    Route::resource('nilai', NilaiMahasiswaController::class);
 });
