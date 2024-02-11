@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
+use App\Models\MataKuliah;
 use App\Models\NilaiMahasiswa;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -14,12 +15,15 @@ class NilaiMahasiswaController extends Controller
      */
     public function index(Request $request)
     {
-
-        return response([
-            'status' => true,
-            'message' => 'OK',
-            'data' => $this->getNilaiMahasiswa($request->user()),
-        ]);
+        $data = $this->getNilaiMahasiswa($request->user());
+        if ($request->wantsJson()) {
+            return response([
+                'status' => true,
+                'message' => 'OK',
+                'data' => $data
+            ]);
+        }
+        return view('user-interface.nilai.index', compact('data'));
     }
 
     private function getNilaiMahasiswa(?User $user, ?string $id = null)
@@ -49,7 +53,9 @@ class NilaiMahasiswaController extends Controller
      */
     public function create()
     {
-        //
+        $mahasiswa = Mahasiswa::all();
+        $mata_kuliah = MataKuliah::all();
+        return view('user-interface.nilai.create', compact('mahasiswa', 'mata_kuliah'));
     }
 
     /**
@@ -66,12 +72,34 @@ class NilaiMahasiswaController extends Controller
             'nilai_uas' => 'required|numeric',
             'presensi' => 'required|numeric',
         ]);
+        $created = NilaiMahasiswa::query()->where([
+            'mhs_nim' => $data['mhs_nim'],
+            'id_mk' => $data['id_mk'],
+        ])->exists();
+
+        if($request->wantsJson() && $created) {
+            return response([
+                'status' => true,
+                'message' => 'Data mahasiswa ini sudah diinput',
+                'data' => []
+            ], 201);
+        }
+
+        if($created) {
+            return back()->with('message', 'Data mahasiswa ini sudah diinput');
+        }
+
         $data['id_user'] = $user->id;
-        return response([
-            'status' => true,
-            'message' => 'OK',
-            'data' => NilaiMahasiswa::create($data),
-        ]);
+        $nilai = NilaiMahasiswa::create($data);
+
+        if($request->wantsJson()) {
+            return response([
+                'status' => true,
+                'message' => 'OK',
+                'data' => $nilai
+            ]);
+        }
+        return redirect()->route('nilai.index')->with('message', 'Tambah data berhasil');
     }
 
     /**

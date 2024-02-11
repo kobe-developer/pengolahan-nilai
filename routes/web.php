@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/', function () {
         return view('user-interface.pages.dashboard');
     })->name('dashboard');
-    Route::delete('/logout', [UserAuthorizeController::class, 'logout']);
+    Route::delete('/logout', [UserAuthorizeController::class, 'logout'])->name('logout');
     Route::resource('dosen', DosenController::class);
     Route::resource('mahasiswa', MahasiswaController::class);
     Route::resource('mata-kuliah', MataKuliahController::class);

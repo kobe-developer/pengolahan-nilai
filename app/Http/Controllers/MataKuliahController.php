@@ -10,15 +10,18 @@ class MataKuliahController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-
         $data = MataKuliah::with('dosen')->get();
-        return response([
-            'status' => true,
-            'message' => 'OK',
-            'data' => $data,
-        ]);
+        if ($request->wantsJson()) {
+            return response([
+                'status' => true,
+                'message' => 'OK',
+                'data' => $data,
+            ]);
+        }
+
+        return view('user-interface.mata_kuliah.index', compact('data'));
     }
 
     /**
@@ -26,7 +29,8 @@ class MataKuliahController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
+        $data = $request->validate(
+            [
                 'nama_mk' => 'required',
                 'sks' => 'required|numeric',
                 'stmt' => 'required|numeric']

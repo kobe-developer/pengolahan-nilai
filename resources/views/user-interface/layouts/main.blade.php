@@ -21,6 +21,11 @@
    <!-- Custom styles for this template-->
    <link href="{{ asset('assets') }}/css/sb-admin-2.min.css" rel="stylesheet">
    <link href="{{ asset('assets/vendor/datatables/dataTables.bootstrap4.css') }}">
+   <style>
+     .table tr td {
+       white-space: nowrap;
+     }
+   </style>
  </head>
 
  <body id="page-top">
@@ -62,6 +67,7 @@
          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
            <div class="collapse-inner rounded bg-white py-2">
              <a class="collapse-item" href="{{ route('mahasiswa.index') }}">Siswa</a>
+             <a class="collapse-item" href="{{ route('mata-kuliah.index') }}">Mata Kuliah</a>
              <a class="collapse-item" href="{{ route('kelas.index') }}">Kelas</a>
              <a class="collapse-item" href="{{ route('dosen.index') }}">Dosen</a>
              <a class="collapse-item" href="{{ route('prodi.index') }}">Prodi</a>
@@ -128,7 +134,7 @@
              <li class="nav-item dropdown no-arrow">
                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                 <span class="d-none d-lg-inline small mr-2 text-gray-600">admin</span>
+                 <span class="d-none d-lg-inline small mr-2 text-gray-600">{{ auth()->user()->nickname }}</span>
                  <img class="img-profile rounded-circle" src="{{ asset('assets') }}/img/undraw_profile.svg">
                </a>
                <!-- Dropdown - User Information -->
@@ -188,8 +194,12 @@
          </div>
          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
          <div class="modal-footer">
-           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-           <a class="btn btn-primary" href="login.html">Logout</a>
+           <form action="{{ route('logout') }}" method="post">
+             @csrf
+             @method('DELETE')
+             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+             <button type="submit" class="btn btn-primary">Logout</button>
+           </form>
          </div>
        </div>
      </div>
