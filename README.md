@@ -26,7 +26,7 @@
   <li>Sheli Seftia utami - 14022300103</li>
   <li>Susanti sipahutar  - 14022300104</li>
   <li>Rizky Arif Perdana  - 14022200149</li>
-  <li>Wahyu Darma Putra  - 14022200044</li>
+  <li>Wahyu Darma Putra  - 14022000044</li>
 </ol>
 
 # Setting Database
